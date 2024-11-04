@@ -1,12 +1,18 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:plugin/red_text_widget.dart';
+import 'package:plugin/takepicture_widget.dart';
 
-Future main() async {
-  runApp(const MyApp());
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final camera = await availableCameras();
-  final dirsCamera = camera.first;
+  final cameras = await availableCameras();
+  final firstCamera = cameras.first;
+
+  runApp(MaterialApp(
+    theme: ThemeData.dark(),
+    home: TakePictureWidget(camera: firstCamera),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 class MyApp extends StatelessWidget {
