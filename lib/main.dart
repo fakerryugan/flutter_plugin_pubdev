@@ -1,8 +1,12 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:plugin/red_text_widget.dart';
 
-void main() {
+Future main() async {
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final camera = await availableCameras();
+  final dirsCamera = camera.first;
 }
 
 class MyApp extends StatelessWidget {
