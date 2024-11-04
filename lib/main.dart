@@ -1,14 +1,18 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:plugin/filter_carousel.dart';
 import 'package:plugin/red_text_widget.dart';
+import 'package:plugin/takepicture_widget.dart';
 
-void main() {
-  runApp(
-    const MaterialApp(
-      home: PhotoFilterCarousel(),
-      debugShowCheckedModeBanner: false,
-    ),
-  );
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final cameras = await availableCameras();
+  final firstCamera = cameras.first;
+
+  runApp(MaterialApp(
+    theme: ThemeData.dark(),
+    home: TakePictureWidget(camera: firstCamera),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
 class MyApp extends StatelessWidget {
